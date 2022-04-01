@@ -1,4 +1,4 @@
-package com.kloyt.pocketbookmailbot.mapper
+package com.kloyt.pocketbookmailbot.domain.mapper
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.kloyt.pocketbookmailbot.domain.User

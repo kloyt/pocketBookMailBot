@@ -3,6 +3,6 @@ server:
 
 telegram:
   api-url: https://api.telegram.org/
-  webhook-path: ngrok.io
+  webhook-path: https://f60b-85-174-206-152.ngrok.io
   bot-name: FlibustaPocketBookBot
   bot-token: 5180749173:AAG-umfkwwhkF-TSqwnCsyn-6l8nRvONqS8

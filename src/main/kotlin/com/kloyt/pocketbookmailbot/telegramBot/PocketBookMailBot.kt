@@ -1,37 +1,37 @@
 package com.kloyt.pocketbookmailbot.telegramBot
 
+import com.kloyt.pocketbookmailbot.configuration.TelegramConfigurations
+import com.kloyt.pocketbookmailbot.telegramBot.handler.CallbackQueryHandler
+import com.kloyt.pocketbookmailbot.telegramBot.handler.MessageHandler
+import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Component
+import org.telegram.telegrambots.bots.TelegramWebhookBot
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
-import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook
 import org.telegram.telegrambots.meta.api.objects.Update
 
-
+@Component
 class PocketBookMailBot(
-        val botPath: String?,
-        val botUsername: String?,
-        val botToken: String?,
+        private val messageHandler: MessageHandler,
+        private val callbackQueryHandler: CallbackQueryHandler,
+        private val telegramConfigurations: TelegramConfigurations
+): TelegramWebhookBot() {
 
-        val messageHandler: MessageHandler,
-        val callbackQueryHandler: CallbackQueryHandler
-) {
-
-
-    fun PocketBookMailBot(setWebhook: SetWebhook?, messageHandler: MessageHandler?, callbackQueryHandler: CallbackQueryHandler?) {
-        super(setWebhook)
-        this.messageHandler = messageHandler
-        this.callbackQueryHandler = callbackQueryHandler
+    companion object {
+        private val log = LoggerFactory.getLogger(this::class.java.enclosingClass)
     }
 
-    fun onWebhookUpdateReceived(update: Update): BotApiMethod<*>? {
-        return try {
-            handleUpdate(update)
-        } catch (e: IllegalArgumentException) {
-            SendMessage(update.message.chatId.toString(),
-                    BotMessageEnum.EXCEPTION_ILLEGAL_MESSAGE.getMessage())
-        } catch (e: Exception) {
-            SendMessage(update.message.chatId.toString(),
-                    BotMessageEnum.EXCEPTION_WHAT_THE_FUCK.getMessage())
-        }
+    override fun onWebhookUpdateReceived(update: Update): BotApiMethod<*> {
+        return SendMessage(update.message.from.id .toString(), "привет")
     }
+
+    override fun getBotToken(): String =
+            telegramConfigurations.botToken
+
+    override fun getBotUsername(): String =
+            telegramConfigurations.botName
+
+    override fun getBotPath(): String =
+            telegramConfigurations.webhookPath
 
 }

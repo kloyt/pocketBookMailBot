@@ -1,7 +1,7 @@
 package com.kloyt.pocketbookmailbot.configuration
 
-import com.kloyt.pocketbookmailbot.mapper.BytesToUserConverter
-import com.kloyt.pocketbookmailbot.mapper.UserToBytesConverter
+import com.kloyt.pocketbookmailbot.domain.mapper.BytesToUserConverter
+import com.kloyt.pocketbookmailbot.domain.mapper.UserToBytesConverter
 import org.springframework.boot.autoconfigure.data.redis.LettuceClientConfigurationBuilderCustomizer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
