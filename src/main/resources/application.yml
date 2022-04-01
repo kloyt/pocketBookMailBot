@@ -1,0 +1,8 @@
+server:
+  port: 8080
+
+telegram:
+  api-url: https://api.telegram.org/
+  webhook-path: ngrok.io
+  bot-name: FlibustaPocketBookBot
+  bot-token: 5180749173:AAG-umfkwwhkF-TSqwnCsyn-6l8nRvONqS8
